@@ -238,10 +238,10 @@ export default function DevLayout() {
           </span>
         </div>
         <div className="vsc-statusbar-right">
-          <span className="vsc-status-item">Ln 1, Col 1</span>
-          <span className="vsc-status-item">Spaces: 2</span>
-          <span className="vsc-status-item">UTF-8</span>
-          <span className="vsc-status-item">TypeScript React</span>
+          <span className="vsc-status-item vsc-status-hide-mobile">Ln 1, Col 1</span>
+          <span className="vsc-status-item vsc-status-hide-mobile">Spaces: 2</span>
+          <span className="vsc-status-item vsc-status-hide-mobile">UTF-8</span>
+          <span className="vsc-status-item vsc-status-hide-mobile">TypeScript React</span>
           <span className="vsc-status-item vsc-status-copilot">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L13.09 7.26L18 6L14.74 9.74L20 12L14.74 14.26L18 18L13.09 16.74L12 22L10.91 16.74L6 18L9.26 14.26L4 12L9.26 9.74L6 6L10.91 7.26L12 2Z"/></svg>
             Copilot
