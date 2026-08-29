@@ -1,0 +1,13 @@
+# Default: normalise line endings for text.
+* text=auto
+
+# Binary assets must never be line-ending converted — doing so corrupts them.
+*.pdf   binary
+*.docx  binary
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.ico   binary
+*.woff  binary
+*.woff2 binary

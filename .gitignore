@@ -22,3 +22,10 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Local editor config
+.claude/
+
+# Cover letters are tailored per application and sent directly —
+# never published to the site.
+public/resume/*Cover-Letter*
