@@ -1,21 +1,20 @@
 import { useState, useEffect } from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import CRTOverlay from './components/CRTOverlay';
 import Sidebar from './components/Sidebar';
-import Hero from './components/Hero';
-import Summary from './components/Summary';
-import Stack from './components/Stack';
-import Record from './components/Record';
-import Projects from './components/Projects';
-import Blog from './components/Blog';
-import Contact from './components/Contact';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
 import AskModal from './components/AskModal';
 import TypingTest from './components/TypingTest';
+import Home from './pages/Home';
+import Systems from './pages/Systems';
+import BlogIndex from './pages/BlogIndex';
+import BlogPost from './pages/BlogPost';
 
 export default function App() {
   const [askOpen, setAskOpen] = useState(false);
   const [typeOpen, setTypeOpen] = useState(false);
+  const { pathname } = useLocation();
 
   // Alt+A opens the assistant, Alt+Q the typing test. Keyed off e.code so the
   // binding survives layouts where Alt produces a different character.
@@ -45,18 +44,24 @@ export default function App() {
     };
   }, [typeOpen, askOpen]);
 
+  // Land at the top when moving between pages, unless deep-linking to a
+  // section on the home page.
+  useEffect(() => {
+    if (!window.location.hash) window.scrollTo({ top: 0, behavior: 'instant' });
+  }, [pathname]);
+
   return (
     <>
       <CRTOverlay />
       <Sidebar onAsk={() => setAskOpen(true)} onType={() => setTypeOpen(true)} />
       <main className="page">
-        <Hero />
-        <Summary />
-        <Stack />
-        <Record />
-        <Projects />
-        <Blog />
-        <Contact />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/systems" element={<Systems />} />
+          <Route path="/blog" element={<BlogIndex />} />
+          <Route path="/blog/:slug" element={<BlogPost />} />
+          <Route path="*" element={<Home />} />
+        </Routes>
         <Footer />
       </main>
       <ScrollToTop />

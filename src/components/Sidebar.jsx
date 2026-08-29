@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import { Sun, Moon, Monitor, Menu, X } from 'lucide-react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useTheme } from '../context/useTheme';
 import Glitch from './Glitch';
 
 // Grouped the way the page reads: who he is, what he's built, what he writes.
+// 'to' entries are real routes; the rest scroll to a section on the home page.
 const groups = [
   [
     { id: 'summary', num: '01', label: 'summary' },
@@ -11,10 +13,10 @@ const groups = [
   ],
   [
     { id: 'record', num: '03', label: 'record' },
-    { id: 'systems', num: '04', label: 'systems' },
+    { id: 'systems', num: '04', label: 'systems', to: '/systems' },
   ],
   [
-    { id: 'blog', num: '05', label: 'blog' },
+    { id: 'blog', num: '05', label: 'blog', to: '/blog' },
     { id: 'contact', num: '06', label: 'contact' },
   ],
 ];
@@ -32,13 +34,18 @@ export default function Sidebar({ onAsk, onType }) {
   const [active, setActive] = useState('summary');
   const [open, setOpen] = useState(false);
   const [entered, setEntered] = useState(false);
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
 
   useEffect(() => {
     const raf = requestAnimationFrame(() => setEntered(true));
     return () => cancelAnimationFrame(raf);
   }, []);
 
+  // Section highlighting only applies on the home page; the route pages mark
+  // themselves active by pathname instead.
   useEffect(() => {
+    if (pathname !== '/') return undefined;
     const onScroll = () => {
       let current = allLinks[0].id;
       for (const { id } of allLinks) {
@@ -50,10 +57,25 @@ export default function Sidebar({ onAsk, onType }) {
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
     return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+  }, [pathname]);
 
+  const isActive = (link) =>
+    link.to ? pathname.startsWith(link.to) : pathname === '/' && active === link.id;
+
+  // Anchor links need the home page mounted before the target exists, so
+  // navigate first and scroll once React has rendered it.
   const go = (id) => {
     setOpen(false);
+    if (pathname !== '/') {
+      navigate('/');
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          const el = document.getElementById(id);
+          if (el) window.scrollTo({ top: el.offsetTop - 40, behavior: 'smooth' });
+        });
+      });
+      return;
+    }
     const el = document.getElementById(id);
     if (el) window.scrollTo({ top: el.offsetTop - 40, behavior: 'smooth' });
   };
@@ -100,20 +122,38 @@ export default function Sidebar({ onAsk, onType }) {
         <div className="sidebar-nav" style={{ '--delay': '70ms' }}>
           {groups.map((group, gi) => (
             <div className="sidebar-group" key={gi}>
-              {group.map(({ id, num, label }) => (
-                <button
-                  key={id}
-                  className={`sidebar-link${active === id ? ' active' : ''}`}
-                  onClick={() => go(id)}
-                  aria-current={active === id ? 'true' : undefined}
-                >
-                  <span className="sidebar-num">{num}</span>
-                  <span className="sidebar-label">{label}</span>
-                  <span className="sidebar-arrow" aria-hidden="true">
-                    →
-                  </span>
-                </button>
-              ))}
+              {group.map((link) => {
+                const cls = `sidebar-link${isActive(link) ? ' active' : ''}`;
+                const inner = (
+                  <>
+                    <span className="sidebar-num">{link.num}</span>
+                    <span className="sidebar-label">{link.label}</span>
+                    <span className="sidebar-arrow" aria-hidden="true">
+                      →
+                    </span>
+                  </>
+                );
+                return link.to ? (
+                  <Link
+                    key={link.id}
+                    to={link.to}
+                    className={cls}
+                    onClick={() => setOpen(false)}
+                    aria-current={isActive(link) ? 'page' : undefined}
+                  >
+                    {inner}
+                  </Link>
+                ) : (
+                  <button
+                    key={link.id}
+                    className={cls}
+                    onClick={() => go(link.id)}
+                    aria-current={isActive(link) ? 'true' : undefined}
+                  >
+                    {inner}
+                  </button>
+                );
+              })}
             </div>
           ))}
         </div>

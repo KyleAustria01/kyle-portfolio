@@ -1,9 +1,7 @@
 import { useState } from 'react';
-import Section from './Section';
 import Glitch from './Glitch';
-import projects from '../data/projects';
 
-function SystemEntry({ project }) {
+export default function SystemEntry({ project }) {
   const [open, setOpen] = useState(false);
   const panelId = `sys-${project.id}`;
 
@@ -65,22 +63,5 @@ function SystemEntry({ project }) {
         ))}
       </div>
     </li>
-  );
-}
-
-export default function Projects() {
-  return (
-    <Section
-      id="systems"
-      num="04"
-      title="systems"
-      action={{ label: 'github', href: 'https://github.com/KyleAustria01' }}
-    >
-      <ol className="system-list">
-        {projects.map((p) => (
-          <SystemEntry key={p.id} project={p} />
-        ))}
-      </ol>
-    </Section>
   );
 }
