@@ -140,6 +140,46 @@ ol {
   }
 }
 
+
+/* ---------- THEME TRANSITION ---------- */
+.theme-static {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: visibility 0.1s;
+}
+.theme-static.active {
+  visibility: visible;
+}
+.theme-static-canvas {
+  width: 100%;
+  height: 100%;
+  /* Upscaled from a 160x90 buffer, so the noise stays chunky. */
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  mix-blend-mode: hard-light;
+}
+
+/* The colour tokens animate too, so the ground shifts under the static
+   rather than snapping the instant it clears. */
+body,
+.sidebar,
+.mobilebar,
+.modal-panel,
+.cl-output,
+.system-panel {
+  transition: background-color 0.35s ease, color 0.35s ease, border-color 0.35s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-static {
+    display: none;
+  }
+}
+
 /* ---------- CRT OVERLAYS ---------- */
 .scanlines,
 .noise {
