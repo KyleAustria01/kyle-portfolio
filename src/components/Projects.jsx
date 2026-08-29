@@ -1,47 +1,86 @@
-import { Folder, Zap } from 'lucide-react';
+import { useState } from 'react';
+import Section from './Section';
+import Glitch from './Glitch';
 import projects from '../data/projects';
-import useScrollAnimation from '../hooks/useScrollAnimation';
 
-export default function Projects() {
-  const ref = useScrollAnimation();
+function SystemEntry({ project }) {
+  const [open, setOpen] = useState(false);
+  const panelId = `sys-${project.id}`;
 
   return (
-    <section id="projects" className="section">
-      <div className="container">
-        <div ref={ref} className="fade-in-up">
-          <div className="section-label">
-            <span className="label-dot" />
-            Portfolio
-          </div>
-          <h2 className="section-title">Featured Projects</h2>
-          <p className="section-desc">
-            Enterprise-grade systems and personal projects I've built and shipped.
-          </p>
-        </div>
+    <li className="system-entry">
+      <div className="system-head">
+        <Glitch as="h3" className="system-name" text={project.title} />
+        <span className={`status-pill status-${project.status.toLowerCase()}`}>{project.status}</span>
+        <span className="system-year">{project.year}</span>
+      </div>
 
-        <div className="projects-grid">
-          {projects.map((project) => (
-            <div className="project-card" key={project.title}>
-              <div className="project-icon">
-                <Folder size={22} />
-              </div>
-              <div className="project-title">{project.title}</div>
-              <div className="project-desc">{project.description}</div>
-              {project.impact && (
-                <div className="project-impact">
-                  <Zap size={14} style={{ display: 'inline', verticalAlign: 'middle', marginRight: 4 }} />
-                  {project.impact}
-                </div>
-              )}
-              <div className="project-stack">
-                {project.stack.map((tech) => (
-                  <span className="project-stack-tag" key={tech}>{tech}</span>
-                ))}
-              </div>
+      <p className="system-summary">{project.description}</p>
+
+      {project.modules && (
+        <dl className="module-list">
+          {project.modules.map((m) => (
+            <div className="module-row" key={m.name}>
+              <dt>{m.name.replace(/_/g, ' ').toLowerCase()}</dt>
+              <dd>{m.body}</dd>
             </div>
           ))}
+        </dl>
+      )}
+
+      <dl className="field-list compact">
+        <div className="field-row">
+          <dt className="field-label">Stack</dt>
+          <dd className="field-value">
+            <ul className="tag-row">
+              {project.stack.map((t) => (
+                <li key={t}>{t}</li>
+              ))}
+            </ul>
+          </dd>
         </div>
+        <div className="field-row">
+          <dt className="field-label">Deploy</dt>
+          <dd className="field-value">{project.deploy}</dd>
+        </div>
+      </dl>
+
+      {open && (
+        <ul className="system-detail" id={panelId}>
+          {project.details.map((d) => (
+            <li key={d}>{d}</li>
+          ))}
+        </ul>
+      )}
+
+      <div className="system-actions">
+        <button className="text-btn" onClick={() => setOpen((o) => !o)} aria-expanded={open} aria-controls={panelId}>
+          {open ? 'Hide detail' : 'Detail'}
+        </button>
+        {project.links.map((link) => (
+          <a key={link.href} className="text-btn primary" href={link.href} target="_blank" rel="noopener noreferrer">
+            {link.label.replace(/[()]/g, '').replace(/_/g, ' ').toLowerCase().replace(/^./, (c) => c.toUpperCase())}
+            <span aria-hidden="true"> ↗</span>
+          </a>
+        ))}
       </div>
-    </section>
+    </li>
+  );
+}
+
+export default function Projects() {
+  return (
+    <Section
+      id="systems"
+      num="04"
+      title="systems"
+      action={{ label: 'github', href: 'https://github.com/KyleAustria01' }}
+    >
+      <ol className="system-list">
+        {projects.map((p) => (
+          <SystemEntry key={p.id} project={p} />
+        ))}
+      </ol>
+    </Section>
   );
 }

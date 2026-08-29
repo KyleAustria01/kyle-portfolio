@@ -1,88 +1,72 @@
-import { Mail, MapPin, ArrowRight } from 'lucide-react';
-import { GitHubIcon, LinkedInIcon } from './Icons';
-import useScrollAnimation from '../hooks/useScrollAnimation';
+import { useState, useEffect } from 'react';
+import Glitch from './Glitch';
+import { GitHubIcon, LinkedInIcon, MailIcon } from './Icons';
+
+const socials = [
+  { label: 'github', href: 'https://github.com/KyleAustria01', Icon: GitHubIcon },
+  { label: 'linkedin', href: 'https://www.linkedin.com/in/kyle-austria/', Icon: LinkedInIcon },
+  { label: 'email', href: 'mailto:kyleryanaustria@gmail.com', Icon: MailIcon },
+];
+
+const stats = [
+  ['4+ yrs', 'shipping'],
+  ['5', 'platforms'],
+  ['80%', 'payroll time cut'],
+  ['2', 'live side projects'],
+];
 
 export default function Hero() {
-  const ref = useScrollAnimation();
+  const [entered, setEntered] = useState(false);
+
+  useEffect(() => {
+    const raf = requestAnimationFrame(() => setEntered(true));
+    return () => cancelAnimationFrame(raf);
+  }, []);
 
   return (
-    <section id="hero" className="hero-section">
-      <div className="container">
-        <div className="hero-grid" ref={ref}>
-          {/* Left: Text Content */}
-          <div className="hero-content fade-in-up visible">
-            <div className="hero-badge">
-              <span className="badge-dot" />
-              Available for opportunities
-            </div>
+    <section className={`hero page-enter${entered ? ' entered' : ''}`} id="top">
+      <div className="hero-head" style={{ '--delay': '0ms' }}>
+        <Glitch as="h1" className="hero-name" text="Kyle Ryan Austria" />
+        <p className="hero-role">Full Stack Developer · Pampanga, Philippines</p>
+      </div>
 
-            <h1 className="hero-name">
-              Hi, I'm{' '}
-              <span className="gradient-text">Kyle Austria</span>
-            </h1>
+      <div className="hero-copy" style={{ '--delay': '80ms' }}>
+        <p>
+          I build the platforms companies actually run on — the ones where a rounding error is
+          somebody&apos;s payslip. Four years of that at Clark Outsourcing: an internal CRM covering the
+          employee lifecycle, an internal helpdesk, and the automation holding them together.
+        </p>
+        <p>
+          Right now I&apos;m bringing AI into those same processes — retrieval pipelines over internal
+          knowledge, not a chatbot bolted on the side. Off the clock I ship things that go live.
+        </p>
+      </div>
 
-            <p className="hero-tagline">
-              Full Stack Developer with 3+ years of experience building enterprise web applications. 
-              I specialize in <strong>Angular</strong>, <strong>Laravel</strong>, and <strong>AWS</strong> — 
-              turning complex business requirements into scalable, production-ready systems.
-            </p>
+      <div className="hero-socials" style={{ '--delay': '150ms' }}>
+        {socials.map((social) => (
+          <a
+            key={social.label}
+            href={social.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hero-social"
+          >
+            <social.Icon size={14} />
+            {social.label}
+            <span className="ext" aria-hidden="true">
+              ↗
+            </span>
+          </a>
+        ))}
+      </div>
 
-            <div className="hero-ctas">
-              <a href="#contact" className="btn btn-primary" onClick={(e) => {
-                e.preventDefault();
-                document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-              }}>
-                <Mail size={16} />
-                Get in Touch
-              </a>
-              <a href="#projects" className="btn btn-secondary" onClick={(e) => {
-                e.preventDefault();
-                document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-              }}>
-                View Projects
-                <ArrowRight size={16} />
-              </a>
-            </div>
-
-            <div className="hero-socials">
-              <a href="https://github.com/KyleAustria01" target="_blank" rel="noopener noreferrer" className="social-link" title="GitHub">
-                <GitHubIcon size={18} />
-              </a>
-              <a href="https://www.linkedin.com/in/kyle-austria/" target="_blank" rel="noopener noreferrer" className="social-link" title="LinkedIn">
-                <LinkedInIcon size={18} />
-              </a>
-              <a href="mailto:kyleryanaustria@gmail.com" className="social-link" title="Email">
-                <Mail size={18} />
-              </a>
-            </div>
+      <div className="hero-stats" style={{ '--delay': '220ms' }}>
+        {stats.map(([value, label]) => (
+          <div className="hero-stat" key={label}>
+            <span className="hero-stat-value">{value}</span>
+            <span className="hero-stat-label">{label}</span>
           </div>
-
-          {/* Right: Stats Card */}
-          <div className="hero-stats-card">
-            <div className="stats-grid">
-              <div className="stat-item">
-                <div className="stat-number">3+</div>
-                <div className="stat-label">Years Exp.</div>
-              </div>
-              <div className="stat-item">
-                <div className="stat-number">6+</div>
-                <div className="stat-label">Projects Built</div>
-              </div>
-              <div className="stat-item">
-                <div className="stat-number">5+</div>
-                <div className="stat-label">Enterprise Systems</div>
-              </div>
-              <div className="stat-item">
-                <div className="stat-number">80%</div>
-                <div className="stat-label">Efficiency Gain</div>
-              </div>
-            </div>
-            <div className="hero-location-badge">
-              <MapPin size={16} />
-              Pampanga, Philippines
-            </div>
-          </div>
-        </div>
+        ))}
       </div>
     </section>
   );
