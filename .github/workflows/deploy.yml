@@ -31,10 +31,9 @@ jobs:
         run: npm ci
 
       - name: Build
-        # GitHub Pages serves this from /kyle-portfolio/. Drop this env var
-        # once a custom domain is pointed at the site.
-        env:
-          VITE_BASE: /kyle-portfolio/
+        # Served from the apex of kyleaustria.com, so Vite's default base of
+        # "/" is correct. public/CNAME is copied into dist/ on every build,
+        # which is what keeps the custom domain bound across deploys.
         run: npm run build
 
       - name: Setup Pages
