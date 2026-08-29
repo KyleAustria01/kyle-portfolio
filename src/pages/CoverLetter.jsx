@@ -1,8 +1,18 @@
 import { useState, useMemo, useRef } from 'react';
 import PageHead from '../components/PageHead';
 import { buildCoverLetter } from '../data/coverLetter';
-
-const FONT = 'Garamond';
+import {
+  FONT,
+  ACCENT,
+  ACCENT_DARK,
+  INK,
+  MUTED,
+  NAME,
+  ROLE,
+  CONTACT,
+  PAGE,
+  todayLong,
+} from '../data/letterDesign';
 
 function saveBlob(blob, filename) {
   const url = URL.createObjectURL(blob);
@@ -52,21 +62,79 @@ export default function CoverLetter() {
     saveBlob(new Blob([text], { type: 'text/plain;charset=utf-8' }), `${fileStem(company)}.txt`);
   };
 
-  // docx is ~1MB, so it loads only when someone actually asks for a .docx.
+  // docx is ~350KB, so it loads only when someone actually asks for a .docx.
+  // Header mirrors build_resume_docx.js so the two documents look like a set.
   const downloadDocx = async () => {
     setBusy('docx');
     try {
-      const { Document, Packer, Paragraph, TextRun, AlignmentType } = await import('docx');
-      const body = text.split('\n').map(
-        (line) =>
-          new Paragraph({
-            alignment: AlignmentType.LEFT,
-            spacing: { after: line.trim() ? 160 : 80 },
-            children: [new TextRun({ text: line, font: FONT, size: 22 })],
-          }),
+      const { Document, Packer, Paragraph, TextRun, AlignmentType, BorderStyle } = await import(
+        'docx'
       );
+
+      const header = [
+        new Paragraph({
+          spacing: { after: 20 },
+          children: [
+            new TextRun({
+              text: NAME,
+              font: FONT,
+              size: 44,
+              bold: true,
+              color: ACCENT_DARK,
+              characterSpacing: 10,
+            }),
+          ],
+        }),
+        new Paragraph({
+          spacing: { after: 60 },
+          children: [
+            new TextRun({
+              text: ROLE.toUpperCase(),
+              font: FONT,
+              size: 19,
+              bold: true,
+              color: ACCENT,
+              characterSpacing: 30,
+            }),
+          ],
+        }),
+        new Paragraph({
+          spacing: { after: 240 },
+          border: { bottom: { style: BorderStyle.SINGLE, size: 14, color: ACCENT, space: 6 } },
+          children: [new TextRun({ text: CONTACT, font: FONT, size: 18, color: MUTED })],
+        }),
+        new Paragraph({
+          spacing: { after: 200 },
+          children: [new TextRun({ text: todayLong(), font: FONT, size: 20, color: MUTED })],
+        }),
+      ];
+
+      const body = text.split('\n').map((line) => {
+        const bullet = line.startsWith('- ');
+        return new Paragraph({
+          alignment: AlignmentType.LEFT,
+          spacing: { after: line.trim() ? 140 : 60 },
+          ...(bullet ? { bullet: { level: 0 } } : {}),
+          children: [
+            new TextRun({
+              text: bullet ? line.slice(2) : line,
+              font: FONT,
+              size: 21,
+              color: INK,
+            }),
+          ],
+        });
+      });
+
       const doc = new Document({
-        sections: [{ properties: {}, children: body }],
+        sections: [
+          {
+            properties: {
+              page: { size: { width: PAGE.width, height: PAGE.height }, margin: PAGE.margin },
+            },
+            children: [...header, ...body],
+          },
+        ],
       });
       const blob = await Packer.toBlob(doc);
       saveBlob(blob, `${fileStem(company)}.docx`);
@@ -165,9 +233,23 @@ export default function CoverLetter() {
         </p>
       </div>
 
-      {/* Print-only rendering: the letter on its own, no interface. */}
+      {/* Print-only rendering: the letter alone, headed like the resume. */}
       <div className="print-letter" aria-hidden="true">
-        {text}
+        <div className="pl-name">{NAME}</div>
+        <div className="pl-role">{ROLE}</div>
+        <div className="pl-contact">{CONTACT}</div>
+        <div className="pl-date">{todayLong()}</div>
+        <div className="pl-body">
+          {text.split('\n').map((line, i) =>
+            line.startsWith('- ') ? (
+              <p className="pl-bullet" key={i}>
+                {line.slice(2)}
+              </p>
+            ) : (
+              <p key={i}>{line || ' '}</p>
+            ),
+          )}
+        </div>
       </div>
     </div>
   );

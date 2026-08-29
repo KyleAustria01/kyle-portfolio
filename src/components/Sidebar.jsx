@@ -1,27 +1,16 @@
 import { useState, useEffect } from 'react';
 import { Sun, Moon, Monitor, Menu, X } from 'lucide-react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useTheme } from '../context/useTheme';
 import Glitch from './Glitch';
 
-// Grouped the way the page reads: who he is, what he's built, what he writes.
-// 'to' entries are real routes; the rest scroll to a section on the home page.
-const groups = [
-  [
-    { id: 'summary', num: '01', label: 'summary' },
-    { id: 'stack', num: '02', label: 'stack' },
-  ],
-  [
-    { id: 'record', num: '03', label: 'record' },
-    { id: 'systems', num: '04', label: 'systems', to: '/systems' },
-  ],
-  [
-    { id: 'blog', num: '05', label: 'blog', to: '/blog' },
-    { id: 'contact', num: '06', label: 'contact' },
-  ],
+// Three destinations. The home page's own sections (summary, stack, record,
+// contact) are reachable by scrolling, so they don't need nav entries.
+const links = [
+  { id: 'home', num: '01', label: 'home', to: '/' },
+  { id: 'systems', num: '02', label: 'systems', to: '/systems' },
+  { id: 'blog', num: '03', label: 'blog', to: '/blog' },
 ];
-
-const allLinks = groups.flat();
 
 const themeModes = [
   { id: 'system', Icon: Monitor, label: 'Match system theme' },
@@ -31,10 +20,8 @@ const themeModes = [
 
 export default function Sidebar({ onAsk, onType }) {
   const { theme, setTheme } = useTheme();
-  const [active, setActive] = useState('summary');
   const [open, setOpen] = useState(false);
   const [entered, setEntered] = useState(false);
-  const navigate = useNavigate();
   const { pathname } = useLocation();
 
   useEffect(() => {
@@ -42,43 +29,8 @@ export default function Sidebar({ onAsk, onType }) {
     return () => cancelAnimationFrame(raf);
   }, []);
 
-  // Section highlighting only applies on the home page; the route pages mark
-  // themselves active by pathname instead.
-  useEffect(() => {
-    if (pathname !== '/') return undefined;
-    const onScroll = () => {
-      let current = allLinks[0].id;
-      for (const { id } of allLinks) {
-        const el = document.getElementById(id);
-        if (el && el.getBoundingClientRect().top <= 160) current = id;
-      }
-      setActive(current);
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-    return () => window.removeEventListener('scroll', onScroll);
-  }, [pathname]);
-
-  const isActive = (link) =>
-    link.to ? pathname.startsWith(link.to) : pathname === '/' && active === link.id;
-
-  // Anchor links need the home page mounted before the target exists, so
-  // navigate first and scroll once React has rendered it.
-  const go = (id) => {
-    setOpen(false);
-    if (pathname !== '/') {
-      navigate('/');
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          const el = document.getElementById(id);
-          if (el) window.scrollTo({ top: el.offsetTop - 40, behavior: 'smooth' });
-        });
-      });
-      return;
-    }
-    const el = document.getElementById(id);
-    if (el) window.scrollTo({ top: el.offsetTop - 40, behavior: 'smooth' });
-  };
+  // "/" must match exactly, or home would light up on every page.
+  const isActive = (link) => (link.to === '/' ? pathname === '/' : pathname.startsWith(link.to));
 
   return (
     <>
@@ -106,56 +58,33 @@ export default function Sidebar({ onAsk, onType }) {
       </header>
 
       <nav className={`sidebar${open ? ' open' : ''} page-enter${entered ? ' entered' : ''}`}>
-        <a
-          href="#top"
+        <Link
+          to="/"
           className="sidebar-brand"
           style={{ '--delay': '0ms' }}
-          onClick={(e) => {
-            e.preventDefault();
-            setOpen(false);
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          }}
+          onClick={() => setOpen(false)}
         >
           <Glitch text="Kyle Austria" />
-        </a>
+        </Link>
 
         <div className="sidebar-nav" style={{ '--delay': '70ms' }}>
-          {groups.map((group, gi) => (
-            <div className="sidebar-group" key={gi}>
-              {group.map((link) => {
-                const cls = `sidebar-link${isActive(link) ? ' active' : ''}`;
-                const inner = (
-                  <>
-                    <span className="sidebar-num">{link.num}</span>
-                    <span className="sidebar-label">{link.label}</span>
-                    <span className="sidebar-arrow" aria-hidden="true">
-                      →
-                    </span>
-                  </>
-                );
-                return link.to ? (
-                  <Link
-                    key={link.id}
-                    to={link.to}
-                    className={cls}
-                    onClick={() => setOpen(false)}
-                    aria-current={isActive(link) ? 'page' : undefined}
-                  >
-                    {inner}
-                  </Link>
-                ) : (
-                  <button
-                    key={link.id}
-                    className={cls}
-                    onClick={() => go(link.id)}
-                    aria-current={isActive(link) ? 'true' : undefined}
-                  >
-                    {inner}
-                  </button>
-                );
-              })}
-            </div>
-          ))}
+          <div className="sidebar-group">
+            {links.map((link) => (
+              <Link
+                key={link.id}
+                to={link.to}
+                className={`sidebar-link${isActive(link) ? ' active' : ''}`}
+                onClick={() => setOpen(false)}
+                aria-current={isActive(link) ? 'page' : undefined}
+              >
+                <span className="sidebar-num">{link.num}</span>
+                <span className="sidebar-label">{link.label}</span>
+                <span className="sidebar-arrow" aria-hidden="true">
+                  →
+                </span>
+              </Link>
+            ))}
+          </div>
         </div>
 
         <div className="sidebar-shortcuts" style={{ '--delay': '160ms' }}>
