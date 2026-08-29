@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import Glitch from './Glitch';
+import { pickHighlights } from '../data/highlights';
 import { GitHubIcon, LinkedInIcon, MailIcon } from './Icons';
 
 const socials = [
@@ -8,15 +9,11 @@ const socials = [
   { label: 'email', href: 'mailto:kyleryanaustria@gmail.com', Icon: MailIcon },
 ];
 
-const stats = [
-  ['4+ yrs', 'shipping'],
-  ['5', 'platforms'],
-  ['80%', 'payroll time cut'],
-  ['2', 'live side projects'],
-];
-
 export default function Hero() {
   const [entered, setEntered] = useState(false);
+  // Drawn once per mount, so the set changes on every page load but stays
+  // stable while the visitor is reading it.
+  const [highlights] = useState(() => pickHighlights(3));
 
   useEffect(() => {
     const raf = requestAnimationFrame(() => setEntered(true));
@@ -61,10 +58,14 @@ export default function Hero() {
       </div>
 
       <div className="hero-stats" style={{ '--delay': '220ms' }}>
-        {stats.map(([value, label]) => (
-          <div className="hero-stat" key={label}>
-            <span className="hero-stat-value">{value}</span>
-            <span className="hero-stat-label">{label}</span>
+        <div className="hero-stat">
+          <span className="hero-stat-value">4+ yrs</span>
+          <span className="hero-stat-label">building in production</span>
+        </div>
+        {highlights.map((h) => (
+          <div className="hero-stat" key={h.label}>
+            <span className="hero-stat-value">{h.value}</span>
+            <span className="hero-stat-label">{h.label}</span>
           </div>
         ))}
       </div>

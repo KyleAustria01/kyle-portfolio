@@ -603,7 +603,9 @@ kbd {
 .hero-stat {
   display: flex;
   flex-direction: column;
-  gap: 0.15rem;
+  justify-content: flex-start;
+  gap: 0.3rem;
+  min-height: 88px;
   padding: 0.85rem 0.95rem;
   border-right: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
@@ -620,8 +622,10 @@ kbd {
 }
 .hero-stat-label {
   font-size: 0.63rem;
-  letter-spacing: 0.1em;
+  line-height: 1.45;
+  letter-spacing: 0.06em;
   color: var(--text-3);
+  text-wrap: pretty;
 }
 
 /* ---------- SECTIONS ---------- */
