@@ -1176,6 +1176,11 @@ kbd {
   color: var(--text-3);
   font-variant-numeric: tabular-nums;
 }
+.cl-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
 .cl-copy {
   font-size: 0.68rem;
   letter-spacing: 0.08em;
@@ -1184,9 +1189,13 @@ kbd {
   color: var(--text-2);
   transition: color 0.2s ease, border-color 0.2s ease;
 }
-.cl-copy:hover {
+.cl-copy:hover:not(:disabled) {
   color: var(--cyan);
   border-color: var(--cyan);
+}
+.cl-copy:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 .cl-text {
   display: block;
@@ -1217,6 +1226,51 @@ kbd {
 .cl-note a:hover {
   color: var(--cyan);
   border-color: var(--cyan);
+}
+
+
+/* ---------- PRINT ---------- */
+.print-letter {
+  display: none;
+}
+
+@media print {
+  /* Everything but the letter is interface; drop it. */
+  .scanlines,
+  .noise,
+  .sidebar,
+  .mobilebar,
+  .scroll-top-btn,
+  .doc-footer,
+  .no-print {
+    display: none !important;
+  }
+
+  html,
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  .page {
+    margin: 0 !important;
+    padding: 0 !important;
+    max-width: none !important;
+  }
+
+  .print-letter {
+    display: block;
+    white-space: pre-wrap;
+    font-family: Garamond, 'Times New Roman', serif;
+    font-size: 11.5pt;
+    line-height: 1.55;
+    color: #000;
+    padding: 0;
+  }
+
+  @page {
+    margin: 20mm;
+  }
 }
 
 /* ---------- CONTACT ---------- */
