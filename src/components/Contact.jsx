@@ -24,7 +24,7 @@ const channels = [
 
 export default function Contact() {
   return (
-    <Section id="contact" num="05" title="contact">
+    <Section id="contact" num="06" title="contact">
       <div className="prose">
         <p className="lede">
           Open to full-time and contract work — anything that needs an Angular, Laravel, Node, or Python

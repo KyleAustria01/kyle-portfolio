@@ -31,4 +31,15 @@ export default defineConfig([
       'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
     },
   },
+  {
+    // One-off Node/CommonJS tooling, not part of the app bundle.
+    files: ['scripts/**/*.js'],
+    languageOptions: {
+      globals: globals.node,
+      sourceType: 'commonjs',
+    },
+    rules: {
+      'no-unused-vars': ['warn', { varsIgnorePattern: '^[A-Z_]' }],
+    },
+  },
 ])

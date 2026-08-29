@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Download } from 'lucide-react';
 import Glitch from './Glitch';
 import { GitHubIcon, LinkedInIcon, MailIcon } from './Icons';
 
@@ -7,6 +8,8 @@ const socials = [
   { label: 'linkedin', href: 'https://www.linkedin.com/in/kyle-austria/', Icon: LinkedInIcon },
   { label: 'email', href: 'mailto:kyleryanaustria@gmail.com', Icon: MailIcon },
 ];
+
+const resumeHref = `${import.meta.env.BASE_URL}resume/Kyle-Ryan-Austria-Resume.pdf`;
 
 const stats = [
   ['4+ yrs', 'shipping'],
@@ -58,6 +61,10 @@ export default function Hero() {
             </span>
           </a>
         ))}
+        <a href={resumeHref} download className="hero-social">
+          <Download size={14} />
+          resume
+        </a>
       </div>
 
       <div className="hero-stats" style={{ '--delay': '220ms' }}>

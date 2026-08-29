@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
 import CRTOverlay from './components/CRTOverlay';
-import TopBar from './components/TopBar';
+import Sidebar from './components/Sidebar';
 import Hero from './components/Hero';
 import Summary from './components/Summary';
 import Stack from './components/Stack';
 import Record from './components/Record';
 import Projects from './components/Projects';
+import Blog from './components/Blog';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
@@ -47,13 +48,14 @@ export default function App() {
   return (
     <>
       <CRTOverlay />
-      <TopBar onAsk={() => setAskOpen(true)} onType={() => setTypeOpen(true)} />
+      <Sidebar onAsk={() => setAskOpen(true)} onType={() => setTypeOpen(true)} />
       <main className="page">
         <Hero />
         <Summary />
         <Stack />
         <Record />
         <Projects />
+        <Blog />
         <Contact />
         <Footer />
       </main>
