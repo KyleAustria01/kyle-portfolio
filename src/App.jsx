@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import CRTOverlay from './components/CRTOverlay';
-import ThemeTransition from './components/ThemeTransition';
 import Sidebar from './components/Sidebar';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
@@ -55,7 +54,6 @@ export default function App() {
   return (
     <>
       <CRTOverlay />
-      <ThemeTransition />
       <Sidebar onAsk={() => setAskOpen(true)} onType={() => setTypeOpen(true)} />
       <main className="page">
         <Routes>
