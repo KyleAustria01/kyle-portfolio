@@ -10,6 +10,7 @@ import Home from './pages/Home';
 import Systems from './pages/Systems';
 import BlogIndex from './pages/BlogIndex';
 import BlogPost from './pages/BlogPost';
+import CoverLetter from './pages/CoverLetter';
 
 export default function App() {
   const [askOpen, setAskOpen] = useState(false);
@@ -60,6 +61,7 @@ export default function App() {
           <Route path="/systems" element={<Systems />} />
           <Route path="/blog" element={<BlogIndex />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
+          <Route path="/cover-letter" element={<CoverLetter />} />
           <Route path="*" element={<Home />} />
         </Routes>
         <Footer />

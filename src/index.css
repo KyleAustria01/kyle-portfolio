@@ -1102,6 +1102,123 @@ kbd {
   color: var(--text-2);
 }
 
+
+/* ---------- COVER LETTER TOOL ---------- */
+.cl-controls {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.cl-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.cl-field > span {
+  font-size: 0.63rem;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+.cl-field input {
+  font: inherit;
+  font-size: 0.85rem;
+  color: var(--text);
+  background: transparent;
+  border: 1px solid var(--border);
+  padding: 0.55rem 0.7rem;
+}
+.cl-field input::placeholder {
+  color: var(--text-3);
+}
+.cl-field input:focus {
+  outline: none;
+  border-color: var(--cyan);
+}
+.cl-toggle {
+  display: inline-flex;
+  border: 1px solid var(--border);
+  width: fit-content;
+}
+.cl-toggle button {
+  padding: 0.5rem 0.9rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: var(--text-3);
+  border-right: 1px solid var(--border);
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+.cl-toggle button:last-child {
+  border-right: none;
+}
+.cl-toggle button.active {
+  color: var(--cyan);
+  background: var(--inset);
+}
+
+.cl-output {
+  border: 1px solid var(--border);
+  background: var(--panel);
+}
+.cl-output-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.6rem 0.9rem;
+  background: var(--bar);
+  border-bottom: 1px solid var(--border);
+}
+.cl-count {
+  font-size: 0.66rem;
+  letter-spacing: 0.06em;
+  color: var(--text-3);
+  font-variant-numeric: tabular-nums;
+}
+.cl-copy {
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  padding: 0.3rem 0.7rem;
+  border: 1px solid var(--border);
+  color: var(--text-2);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.cl-copy:hover {
+  color: var(--cyan);
+  border-color: var(--cyan);
+}
+.cl-text {
+  display: block;
+  width: 100%;
+  min-height: 420px;
+  resize: vertical;
+  font: inherit;
+  font-size: 0.83rem;
+  line-height: 1.75;
+  color: var(--text-2);
+  background: transparent;
+  border: none;
+  padding: 1.1rem 1.2rem;
+  white-space: pre-wrap;
+}
+.cl-text:focus {
+  outline: none;
+}
+.cl-note {
+  margin-top: 1.1rem;
+  font-size: 0.75rem;
+  color: var(--text-3);
+}
+.cl-note a {
+  color: var(--text-2);
+  border-bottom: 1px solid var(--border);
+}
+.cl-note a:hover {
+  color: var(--cyan);
+  border-color: var(--cyan);
+}
+
 /* ---------- CONTACT ---------- */
 .prose {
   display: flex;
