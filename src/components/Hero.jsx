@@ -30,12 +30,13 @@ export default function Hero() {
       <div className="hero-copy" style={{ '--delay': '80ms' }}>
         <p>
           I build the platforms companies actually run on — the ones where a rounding error is
-          somebody&apos;s payslip. Four years of that at Clark Outsourcing: an internal CRM covering the
-          employee lifecycle, an internal helpdesk, and the automation holding them together.
+          somebody&apos;s payslip. I spent four years doing that at Clark Outsourcing: an internal CRM covering
+          the employee lifecycle, an internal helpdesk, and the automation holding them together.
         </p>
         <p>
-          Right now I&apos;m bringing AI into those same processes — retrieval pipelines over internal
-          knowledge, not a chatbot bolted on the side. Off the clock I ship things that go live.
+          Most recently I brought AI into those same processes — retrieval pipelines over internal
+          knowledge, not a chatbot bolted on the side. Off the clock I ship things that go live. Open to
+          new roles from November 2026.
         </p>
       </div>
 

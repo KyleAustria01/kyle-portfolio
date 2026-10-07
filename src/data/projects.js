@@ -61,11 +61,11 @@ const projects = [
   {
     id: 'crm',
     tag: 'ENTERPRISE / INTERNAL PLATFORM',
-    year: '2022 - PRESENT',
+    year: '2022 - 2026',
     title: 'Internal CRM & Operations Platform',
     status: 'PRODUCTION',
     description:
-      'The system the company actually runs on. One platform rather than a pile of separate apps: employee lifecycle management, an internal helpdesk, and the automation layer that keeps Airtable and Zoho in step with it. Built and extended module by module over three years.',
+      'The system the company actually runs on. One platform rather than a pile of separate apps: employee lifecycle management, an internal helpdesk, and the automation layer that keeps Airtable and Zoho in step with it. Built and extended module by module over four years.',
     modules: [
       {
         name: 'EMPLOYEE_LIFECYCLE',

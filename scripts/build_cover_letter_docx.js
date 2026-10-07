@@ -16,9 +16,9 @@ const CONFIG = {
   whyThisRole:
     'What draws me to this role is the chance to keep building products end to end — from database schema to the interface a user actually touches — on a team that ships to production regularly.',
   keyPoints: [
-    'Built and still maintain the internal CRM & operations platform Clark Outsourcing runs on — employee lifecycle, helpdesk ticketing, and Airtable/Zoho automation — plus a separate payroll system with full Philippine statutory compliance that cut processing time by 80%.',
+    'Built and maintained the internal CRM & operations platform Clark Outsourcing runs on — employee lifecycle, helpdesk ticketing, and Airtable/Zoho automation — plus a separate payroll system with full Philippine statutory compliance that cut processing time by 80%.',
     'Comfortable owning a stack end to end: Angular and React on the front end, Laravel and NestJS on the back end, and AWS infrastructure (EC2, ECS, RDS, S3, SQS) in production.',
-    'Currently integrating AI into company workflows through RAG pipelines with Pinecone and Elasticsearch — I like pulling new tools into existing systems rather than bolting on a chatbot for its own sake.',
+    'Most recently brought AI into company workflows through RAG pipelines with Pinecone and Elasticsearch — I like pulling new tools into existing systems rather than bolting on a chatbot for its own sake.',
   ],
   closing:
     "I'd welcome the chance to talk about how I can contribute to your team. Thank you for your time and consideration.",

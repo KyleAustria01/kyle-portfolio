@@ -105,8 +105,7 @@ def draw_sidebar():
         'Pampanga, Philippines',
         'linkedin.com/in/kyle-austria',
         'github.com/KyleAustria01',
-        'kyleaustria01.github.io',
-        '/kyle-portfolio',
+        'kyleaustria.com',
     ]
     c.setFont(SANS, 8)
     c.setFillColor(SIDE_TEXT)
@@ -161,7 +160,7 @@ def draw_sidebar():
     y = side_heading('AVAILABILITY', x, y)
     c.setFont(SANS, 7.8)
     c.setFillColor(SIDE_TEXT)
-    for line in ['Open to full-time &', 'contract work, remote', '(GMT+8)']:
+    for line in ['Available Nov 2026', 'Open to full-time &', 'contract work, remote', '(GMT+8)']:
         c.drawString(x, y, line)
         y -= 10
 
@@ -188,7 +187,7 @@ def draw_main():
                "CRM and operations platform Clark Outsourcing runs on -- employee "
                "lifecycle, helpdesk ticketing, and Airtable/Zoho automation -- plus a "
                "separate payroll system with full Philippine statutory compliance. "
-               "Currently integrating AI into company workflows through RAG pipelines "
+               "Most recently brought AI into company workflows through RAG pipelines "
                "with Pinecone and Elasticsearch. Full details, live projects, and an "
                "AI assistant that answers questions about my work are on my portfolio "
                "site (see sidebar).")
@@ -206,12 +205,12 @@ def draw_main():
         {
             'role': 'Full Stack Developer',
             'org': 'Clark Outsourcing',
-            'dates': 'May 2022 -- Present',
+            'dates': 'May 2022 -- Oct 2026',
             'bullets': [
-                'Built and maintain the internal CRM & operations platform -- employee lifecycle, helpdesk ticketing, and the Airtable/Zoho automation layer that ties them together',
+                'Built and maintained the internal CRM & operations platform -- employee lifecycle, helpdesk ticketing, and the Airtable/Zoho automation layer that ties them together',
                 'Built a separate payroll system with full Philippine statutory compliance (SSS, PhilHealth, Pag-IBIG), cutting processing time by 80% and manual work by 60%',
                 'Architected AWS infrastructure across EC2, ECS, RDS, S3, SQS, Route 53, and Elastic Beanstalk, with CI/CD pipelines and a secured Git branching strategy',
-                'Integrating AI into company processes -- RAG pipelines with Pinecone and Elasticsearch for retrieval over internal knowledge',
+                'Brought AI into company processes -- RAG pipelines with Pinecone and Elasticsearch for retrieval over internal knowledge',
             ],
         },
         {

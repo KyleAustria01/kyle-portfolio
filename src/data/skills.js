@@ -3,7 +3,7 @@ const skills = [
   {
     id: 'frontend',
     label: 'Frontend',
-    note: 'Angular in production for three years; React for everything I build myself.',
+    note: 'Angular in production for four years; React for everything I build myself.',
     items: ['Angular', 'React', 'TypeScript', 'JavaScript', 'NgRx', 'RxJS', 'Vite', 'Tailwind CSS', 'HTML5', 'CSS3'],
   },
   {

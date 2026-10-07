@@ -2,18 +2,18 @@
 // Only `summary` and `qaPatterns` are consumed — keep this file in step with
 // src/data/{projects,experience,skills}.js rather than duplicating them here.
 const kyleData = {
-  summary: `Kyle Ryan Austria is a Full Stack Developer with 4+ years of experience building enterprise platforms in production. He specialises in Angular on the front end and Laravel on the back end, with deep AWS experience. At Clark Outsourcing he built the internal CRM and operations platform the company runs on — employee lifecycle, helpdesk ticketing, and Airtable/Zoho automation — plus a separate payroll system with full Philippine statutory compliance. More recently he has been integrating AI into company processes through RAG pipelines.`,
+  summary: `Kyle Ryan Austria is a Full Stack Developer with 4+ years of experience building enterprise platforms in production. He specialises in Angular on the front end and Laravel on the back end, with deep AWS experience. At Clark Outsourcing (May 2022 to Oct 2026) he built the internal CRM and operations platform the company runs on — employee lifecycle, helpdesk ticketing, and Airtable/Zoho automation — plus a separate payroll system with full Philippine statutory compliance. Most recently he brought AI into company processes through RAG pipelines. He is open to full-time and contract remote roles from November 2026.`,
 
   qaPatterns: [
     {
       keywords: ['whoami', 'introduce', 'who is kyle', 'your name'],
       weak: ['who', 'name', 'yourself', 'about you', 'tell me about'],
-      answer: "I'm Kyle Ryan Austria, a Full Stack Developer based in Pampanga, Philippines. I have 4+ years of experience building enterprise platforms, specialising in Angular, Laravel, and AWS. Lately I've been integrating AI into business processes with RAG pipelines, Pinecone, and Elasticsearch.",
+      answer: "I'm Kyle Ryan Austria, a Full Stack Developer based in Pampanga, Philippines. I have 4+ years of experience building enterprise platforms, specialising in Angular, Laravel, and AWS. Most recently I've been integrating AI into business processes with RAG pipelines, Pinecone, and Elasticsearch.",
     },
     {
       keywords: ['ls ./experience', 'work history', 'career', 'employment', 'worked', 'job', 'jobs'],
       weak: ['experience', 'work', 'where'],
-      answer: "I've been a Full Stack Developer at Clark Outsourcing since May 2022, where I built and still maintain the internal CRM & operations platform — employee lifecycle, helpdesk ticketing, and Airtable/Zoho automation — plus a separate payroll system. More recently I've been integrating AI into company processes with RAG pipelines. I also did a part-time role at SOS Global (Australia) from Nov 2025 to Feb 2026, building NeuroScreen with Angular, NestJS, and Prisma. My career started with an OJT at Cloud Staff in 2022.",
+      answer: "I was a Full Stack Developer at Clark Outsourcing from May 2022 to October 2026, where I built and maintained the internal CRM & operations platform — employee lifecycle, helpdesk ticketing, and Airtable/Zoho automation — plus a separate payroll system. Toward the end I brought AI into company processes with RAG pipelines. I'm open to new full-time or contract remote roles from November 2026. I also did a part-time role at SOS Global (Australia) from Nov 2025 to Feb 2026, building NeuroScreen with Angular, NestJS, and Prisma. My career started with an OJT at Cloud Staff in 2022.",
     },
     {
       keywords: ['ls ./skills', 'skill', 'skills', 'tech stack', 'stack', 'python', 'docker', 'vite', 'typescript', 'framework', 'frameworks', 'tools', 'proficient', 'what do you use'],
@@ -42,7 +42,7 @@ const kyleData = {
     {
       keywords: ['contact --info', 'contact', 'get in touch', 'in touch', 'reach out', 'reach', 'email', 'hire', 'hiring', 'freelance', 'connect'],
       weak: ['available'],
-      answer: "You can reach me at kyleryanaustria@gmail.com. I'm also on GitHub (github.com/KyleAustria01) and LinkedIn (linkedin.com/in/kyle-austria/). Feel free to reach out for collaborations, opportunities, or just to say hi!",
+      answer: "You can reach me at kyleryanaustria@gmail.com. I'm also on GitHub (github.com/KyleAustria01) and LinkedIn (linkedin.com/in/kyle-austria/). I'm open to full-time and contract remote roles from November 2026 — feel free to reach out for opportunities, collaborations, or just to say hi!",
     },
     {
       keywords: ['aws', 'cloud', 'devops', 'infrastructure', 'ecs', 'ec2', 'deploy', 'deployment', 'server', 'hosting'],
@@ -60,11 +60,11 @@ const kyleData = {
     {
       keywords: ['payroll', 'hris', 'crm', 'helpdesk', 'ticketing', 'airtable', 'zoho', 'automation', 'enterprise', 'clark outsourcing'],
       weak: ['hr'],
-      answer: "At Clark Outsourcing the main thing I built is the internal CRM & operations platform — one system rather than a pile of apps. It covers the employee lifecycle (onboarding, time-in attendance, leave filing with approval routing, performance management, and employee record maintenance), an internal helpdesk with SQS-backed notifications and per-ticket audit trails, and an automation layer wiring Airtable and Zoho into the platform so records propagate without manual re-entry. Payroll runs as its own separate system with full Philippine statutory compliance (SSS, PhilHealth, Pag-IBIG) — it cut processing time by 80%.",
+      answer: "At Clark Outsourcing the main thing I built was the internal CRM & operations platform — one system rather than a pile of apps. It covers the employee lifecycle (onboarding, time-in attendance, leave filing with approval routing, performance management, and employee record maintenance), an internal helpdesk with SQS-backed notifications and per-ticket audit trails, and an automation layer wiring Airtable and Zoho into the platform so records propagate without manual re-entry. Payroll runs as its own separate system with full Philippine statutory compliance (SSS, PhilHealth, Pag-IBIG) — it cut processing time by 80%.",
     },
     {
       keywords: ['rag', 'pinecone', 'elasticsearch', 'elastic search', 'vector', 'embedding', 'embeddings', 'llm', 'machine learning', 'ai integration', 'artificial intelligence', 'ai'],
-      answer: "I work on integrating AI into company processes — RAG pipelines in particular. That means vector search with Pinecone, Elasticsearch for retrieval, embedding and chunking strategies, and wiring LLMs into existing business workflows rather than bolting on a chatbot. A.R.I.A is the clearest public example: multi-provider LLM orchestration with a fallback chain, live web research, and document parsing feeding the model's context.",
+      answer: "I've worked on integrating AI into company processes — RAG pipelines in particular. That means vector search with Pinecone, Elasticsearch for retrieval, embedding and chunking strategies, and wiring LLMs into existing business workflows rather than bolting on a chatbot. A.R.I.A is the clearest public example: multi-provider LLM orchestration with a fallback chain, live web research, and document parsing feeding the model's context.",
     },
     {
       keywords: ['location', 'based', 'philippines', 'pampanga', 'country', 'timezone'],

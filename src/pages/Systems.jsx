@@ -7,7 +7,7 @@ export default function Systems() {
     <div className="route-page">
       <PageHead
         title="systems"
-        blurb="Platforms I've built and still maintain — two personal, one for a client, two in production at Clark Outsourcing."
+        blurb="Platforms I've built and shipped — two personal, one for a client, two still in production at Clark Outsourcing."
       />
 
       <ol className="system-list">

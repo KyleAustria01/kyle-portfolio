@@ -7,9 +7,9 @@ const WHY =
   'What draws me to this role is the chance to keep building products end to end — from database schema to the interface a user actually touches — on a team that ships to production regularly.';
 
 const POINTS = [
-  'Built and still maintain the internal CRM & operations platform Clark Outsourcing runs on — employee lifecycle, helpdesk ticketing, and Airtable/Zoho automation — plus a separate payroll system with full Philippine statutory compliance that cut processing time by 80%.',
+  'Built and maintained the internal CRM & operations platform Clark Outsourcing runs on — employee lifecycle, helpdesk ticketing, and Airtable/Zoho automation — plus a separate payroll system with full Philippine statutory compliance that cut processing time by 80%.',
   'Comfortable owning a stack end to end: Angular and React on the front end, Laravel and NestJS on the back end, and AWS infrastructure (EC2, ECS, RDS, S3, SQS) in production.',
-  'Currently integrating AI into company workflows through RAG pipelines with Pinecone and Elasticsearch — I like pulling new tools into existing systems rather than bolting on a chatbot for its own sake.',
+  'Most recently brought AI into company workflows through RAG pipelines with Pinecone and Elasticsearch — I like pulling new tools into existing systems rather than bolting on a chatbot for its own sake.',
 ];
 
 const CLOSING =
@@ -31,7 +31,7 @@ export function buildCoverLetter({ company, position, length = 'full', greeting 
       '',
       OPENING(role, co),
       '',
-      `At Clark Outsourcing I built and still maintain the internal CRM and operations platform the company runs on — employee lifecycle, helpdesk ticketing, and Airtable/Zoho automation — plus a separate payroll system with full Philippine statutory compliance that cut processing time by 80%. I'm comfortable owning a stack end to end, and I'm currently integrating AI into company workflows through RAG pipelines.`,
+      `At Clark Outsourcing I built and maintained the internal CRM and operations platform the company runs on — employee lifecycle, helpdesk ticketing, and Airtable/Zoho automation — plus a separate payroll system with full Philippine statutory compliance that cut processing time by 80%. I'm comfortable owning a stack end to end, and most recently I brought AI into company workflows through RAG pipelines.`,
       '',
       CLOSING,
       '',

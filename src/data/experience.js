@@ -3,9 +3,9 @@ const experience = [
     id: 'clark',
     title: 'Full Stack Developer',
     company: 'Clark Outsourcing',
-    dates: 'May 2022 — Present',
+    dates: 'May 2022 — Oct 2026',
     impact:
-      'Built and still maintain the internal CRM platform the company runs on, plus the payroll system that sits alongside it.',
+      'Built and maintained the internal CRM platform the company runs on, plus the payroll system that sits alongside it — both still in production.',
     stack: ['Angular', 'NgRx', 'Laravel', 'MySQL', 'AWS', 'Airtable', 'Zoho', 'CI/CD'],
     highlights: [
       'Built the internal CRM & operations platform module by module — employee lifecycle, helpdesk ticketing, and the automation layer that ties them together',
@@ -13,7 +13,7 @@ const experience = [
       'Helpdesk module handles internal support and incident ticketing with automated communication logs, SQS-backed stakeholder notifications, and live tracking dashboards',
       'Wired Airtable and Zoho automations into the platform so records and status changes propagate without manual re-entry between systems',
       'Built the payroll system as a separate service with full Philippine statutory compliance (SSS, PhilHealth, Pag-IBIG), cutting processing time by 80% and manual work by 60%',
-      'Integrating AI into company processes — RAG pipelines with Pinecone and Elasticsearch for retrieval over internal knowledge',
+      'Brought AI into company processes — RAG pipelines with Pinecone and Elasticsearch for retrieval over internal knowledge',
       'Architected AWS infrastructure across EC2, ECS, RDS, S3, SQS, Route 53, and Elastic Beanstalk',
       'Set up CI/CD pipelines with automated deployment notifications and a secured Git branching strategy',
       'Standardised NgRx state management across the Angular front end',

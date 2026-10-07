@@ -136,7 +136,7 @@ const doc = new Document({
         nameHeading('KYLE RYAN AUSTRIA'),
         roleLine('Full Stack Developer'),
         contactLine(
-          'Pampanga, Philippines   ·   +63 976 272 2124   ·   kyleryanaustria@gmail.com   ·   linkedin.com/in/kyle-austria   ·   github.com/KyleAustria01'
+          'Pampanga, Philippines   ·   +63 976 272 2124   ·   kyleryanaustria@gmail.com   ·   linkedin.com/in/kyle-austria   ·   github.com/KyleAustria01   ·   kyleaustria.com'
         ),
 
         sectionHeader('Summary'),
@@ -144,18 +144,18 @@ const doc = new Document({
           'Full Stack Developer with 4+ years of experience building enterprise platforms in production, ' +
           'specializing in Angular on the front end and Laravel on the back end, with deep AWS experience. ' +
           'Built the internal CRM and operations platform Clark Outsourcing runs on, plus a separate payroll ' +
-          'system with full Philippine statutory compliance. Currently integrating AI into company workflows ' +
-          'through RAG pipelines with Pinecone and Elasticsearch.'
+          'system with full Philippine statutory compliance. Most recently brought AI into company workflows ' +
+          'through RAG pipelines with Pinecone and Elasticsearch. Available for full-time and contract remote roles from November 2026.'
         ),
 
         sectionHeader('Work Experience'),
 
         entryLine('CLARK OUTSOURCING', 'Pampanga, Philippines', { colorRight: MUTED }),
-        entryLine('Full Stack Developer', 'May 2022 – Present', { boldLeft: false, italicLeft: true, colorLeft: MUTED }),
-        bullet('Built and maintain the internal CRM & operations platform – employee lifecycle, helpdesk ticketing, and the Airtable/Zoho automation layer that ties them together'),
+        entryLine('Full Stack Developer', 'May 2022 – Oct 2026', { boldLeft: false, italicLeft: true, colorLeft: MUTED }),
+        bullet('Built and maintained the internal CRM & operations platform – employee lifecycle, helpdesk ticketing, and the Airtable/Zoho automation layer that ties them together'),
         bullet('Built a separate payroll system with full Philippine statutory compliance (SSS, PhilHealth, Pag-IBIG), cutting processing time by 80% and manual work by 60%'),
         bullet('Architected AWS infrastructure across EC2, ECS, RDS, S3, SQS, Route 53, and Elastic Beanstalk, with CI/CD pipelines and a secured Git branching strategy'),
-        bullet('Integrating AI into company processes – RAG pipelines with Pinecone and Elasticsearch for retrieval over internal knowledge'),
+        bullet('Brought AI into company processes – RAG pipelines with Pinecone and Elasticsearch for retrieval over internal knowledge'),
 
         entryLine('SOS GLOBAL (Australia)', 'Remote', { colorRight: MUTED }),
         entryLine('Full Stack Developer (Part-time)', 'Nov 2025 – Feb 2026', { boldLeft: false, italicLeft: true, colorLeft: MUTED }),
